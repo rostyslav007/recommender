@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add film</title>
+{% endblock %}
+
+{% block body %}
+	<h1 style='text-align: center; padding: 30px;'>Add film info</h1>
+	<div class='add_form'>
+		<form action='/admin/add' method="POST" enctype="multipart/form-data">
+			<input type="text" name="name" placeholder="name" required><br>
+			<input type="text" name="year" placeholder="year" required><br>
+			<input type="text" name="genre" placeholder="genre" required><br>
+			<textarea type="text" name="description" placeholder="description" rows="15" cols="100" required></textarea><br>
+			<input type="text" name="roles" placeholder="roles" required><br>
+			<input type="text" name="price" placeholder="price" required><br>
+			<label for='image'>Image:</label>
+			<input id='image' type="file" name="image" required><br>
+			<input type="submit" name="submit" placeholder="submit" class="button">
+		</form>
+	</div>
+{% endblock %}

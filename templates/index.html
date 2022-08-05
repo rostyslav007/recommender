@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>FilmSearch</title>
+<script type="text/javascript" src="../static/js/recommended_slider.js"></script>
+<script type="text/javascript" src="../static/js/recommended_svd_slider.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class='content_wrapper'>
+	{% include 'header.html'%}
+	<section id='recommended_for_you'>
+		<h2>Recommendation, based on users who also like films you like</h2>
+		<div class='slider'>
+			<div class='flex_wrapper_row'>
+				{% if recommended is defined %}
+				{% for film in recommended %}
+				<div class='recommended_film flex'>
+					<img src="../static/images/{{film['image']}}">
+					<p><span>Name: </span>{{film['name']}}</p>
+					<a href='/description/{{film["film_id"]}}'>Read more</a>
+				</div>
+				{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</section>
+	<div class='left_arrow'></div>
+	<div class='right_arrow'></div>
+
+	<section id='recommended_for_you_svd'>
+		<h2>Recommendation, based on SVD encoding</h2>
+		<div class='slider_svd'>
+			<div class='flex_wrapper_row'>
+				{% if recommended is defined %}
+				{% for film in recommended_svd %}
+				<div class='recommended_film_svd flex'>
+					<img src="../static/images/{{film['image']}}">
+					<p><span>Name: </span>{{film['name']}}</p>
+					<a href='/description/{{film["film_id"]}}'>Read more</a>
+				</div>
+				{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</section>
+	<div class='left_arrow_svd'></div>
+	<div class='right_arrow_svd'></div>
+	<footer>
+		
+	</footer>
+</div>
+{% endblock %}

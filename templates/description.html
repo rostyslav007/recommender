@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Description</title>
+<script type='text/javascript' src="../static/js/script.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class='content_wrapper'>
+	{% include 'header.html'%}
+	<section class='film_description flex_wrapper_start content_block'>
+		<div class='film_image flex'>
+			<img alt='{{film["image"]}}' src='../static/images/{{film["image"]}}'>
+			<div data-current_rating='{{rating}}' class='rating flex_wrapper_start' id='rating_bar'>
+				{% for i in range(1, 11) %}
+				<div class='rating_star' data-rating='{{i}}' data-id='{{film["id"]}}' data-user_id="{{session['id']}}"></div>
+				{% endfor %}
+			</div>
+			<div class='rate'></div>
+		</div>
+		<div class='film_info flex'>
+			<p><span>Name:</span> {{film['name']}}</p>
+			<p><span>Year:</span> {{film['year']}}</p>
+			<p><span>Genre:</span> {{film['genre']}}</p>
+			<p><span>Description:</span> {{film['short_desc']}}</p>
+			<p><span>Main roles:</span> {{film['main_roles']}}</p>
+			<p>
+				{% if status == -1 %}
+				<a href='/add_list/{{film_id}}'>Add to my list</a>
+				{% elif not status %}
+				<a href="/my_list">Currently in my list</a>
+				{% else %}
+				<a href='/watched'>Watched</a>
+				{% endif %} 
+			</p>
+		</div>
+		{% if similar %}
+		<p class='you_may_like'>You may also like</p>
+		<div class='line'></div>
+		<div class='similar_block flex_wrapper_start'>
+			{% for similar_film in similar %}
+			<div class='similar_film'>
+				<img alt='{{similar_film["name"]}}' src='../static/images/{{similar_film["image"]}}'>
+				<p><span>Name: </span>{{similar_film["name"]}}</p>
+				<p><span>Genre: </span>{{similar_film["genre"]}}</p>
+				<p><a href='/description/{{similar_film["similar_film_id"]}}'>Read more</a></p>
+			</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+	</section>
+</div>
+{% endblock %}

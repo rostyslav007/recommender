@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin form</title>
+{% endblock %}
+
+{% block body %}
+
+<div class='wrapper'>
+	<div class='admin_form'>
+		<form action='admin_form' method='POST'>
+			<label for='login'>admin login</label><br>
+			<input type="text" id="login" name="login" placeholder="login"><br>
+			<label for='password'>admin password</label><br>
+			<input type="text" id="password" name="password" placeholder="password"><br>
+			<input type="submit" name="Submit">
+		</form>
+	</div>
+</div>
+{% endblock %}

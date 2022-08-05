@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>My Watched List</title>
+{% endblock %}
+
+{% block body %}
+<div class='content_wrapper'>
+	{% include 'header.html'%}
+	<section class='list_section content_block'>
+	{% if watched_list %}
+		{% for film in watched_list %}
+		<div class='list_film'>
+			<div class='image_list flex'>
+				<img src='../static/images/{{film["image"]}}'>
+			</div>
+			<div class='list_info flex'>
+				<p class='first'><span>Name: </span>{{film['name']}}</p>
+				<p><span>Year: </span>{{film['year']}}</p>
+				<p><span>Genre: </span>{{film['genre']}}</p>
+				<p><span>Added: </span>{{film['date_time'].date()}}</p>
+				<div class='interact'>
+					<p><a style="float: left; margin-right: 20px" href='/description/{{film["id"]}}'>Read more</a></p>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	{% else %}
+	<p class='no_list'>There is no films in your list yet, try to find the interesting one at <a href="/content/1">Content</a> page <span>:)</span></p>
+	{% endif %}
+	</section>
+</div>
+{% endblock %}

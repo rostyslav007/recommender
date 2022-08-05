@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Admin panel</title>
+{% endblock %}
+
+{% block body %}
+	<div class='add_film' style='padding: 20px'><a href='/admin/add'>Add</a></div>
+	<div class='admin_films'>
+	{% for film in films %}
+		<div class="film">
+		<img src="../static/images/{{film['image']}}">
+		<div class='info'>
+			<p style='max-width: 100px;'>name: {{film['name']}}</p>
+			<p>year: {{film['year']}}</p>
+			<p style='max-width: 100px;'>genre: {{film['genre']}}</p>
+		</div>	
+		<div class='action'>
+			<a href='/admin/delete/{{film["id"]}}'>Delete</a>
+			<a href='/admin/update/{{film["id"]}}'>Update</a>
+		</div>
+		</div>
+	{% endfor %}
+	</div>
+{% endblock %}

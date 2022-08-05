@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Update film</title>
+{% endblock %}
+
+{% block body %}
+	<h1 style='text-align: center; padding: 30px;'>Update film info</h1>
+	<div class='update_form'>
+		<form action='/admin/update/{{film["id"]}}' method="POST" enctype="multipart/form-data">
+			<input type="text" name="name" placeholder="name" value="{{film['name']}}" required><br>
+			<input type="text" name="year" placeholder="year" value="{{film['year']}}" required><br>
+			<input type="text" name="genre" placeholder="genre" value="{{film['genre']}}" required><br>
+			<textarea type="text" name="description" placeholder="description" rows="15" cols="100" required>{{film['short_desc']}}</textarea><br>
+			<input type="text" name="roles" placeholder="roles" value="{{film['main_roles']}}" required><br>
+			<input type="text" name="price" placeholder="price" value="{{film['price']}}" required><br>
+			<label for='image'>Image:</label>
+			<img style='max-width: 200px' alt='film title' src="{{ url_for('static', filename='/'.join(['images', film['image']])) }}" />
+			<input id='image' type="file" name="image"><br>
+			<input type="submit" name="submit" placeholder="submit" class="button">
+		</form>
+	</div>
+{% endblock %}
